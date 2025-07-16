@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contoh Dua Satu</title>
+</head>
+<body>
+<div>
+    <h1 style="color: red">CONTOH DUA SATU</h1>
+</div>
+
+<form th:action="@{/contohdua/sbmt}" method="GET" th:id="formSubmitz">
+
+    <div>
+        <input type="text" id="textOne" name="textOne" th:value="${textOne}"/>
+    </div>
+    <div>
+        <button type="submit">SUBMIT</button>
+    </div>
+    <h1 th:text="${dataInput}"></h1>
+
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Contoh Dua Satu</title>
+</head>
+<body>
+<div>
+    <h1 style="color: red">CONTOH DUA SATU</h1>
+</div>
+
+<form th:action="@{/contohdua/two/sbmt}"
+      th:object="${data}"
+      method="POST" th:id="formSubmitz">
+
+    <div>
+        <label>Username : </label>
+        <input type="text" pattern="^^(?=.{1,256})(?=.{1,64}@.{1,255}$)(?:(?![.])[a-zA-Z0-9._%+-]+(?:(?<!\\)[.][a-zA-Z0-9-]+)*?)@[a-zA-Z0-9.-]+(?:\.[a-zA-Z]{2,50})+$|^([a-z0-9\.]{8,16})$|^(62|\+62|0)8[0-9]{9,13}$$" title="No HP, Email atau UserName" th:field="*{username}"/>
+        <ul>
+            <li th:each="err : ${#fields.errors('username')}" th:text="${err}" class="error" />
+        </ul>
+    </div>
+    <div>
+        <label>Password : </label>
+        <input type="text" th:field="*{password}" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\-$])[\w].{8,15}$" title="Password Harus Sesuai Format"/>
+        <ul>
+            <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
+        </ul>
+    </div>
+    <div>
+        <button type="submit">SUBMIT</button>
+    </div>
+    <h1 th:text="${dataUsername}"></h1>
+    <h1 th:text="${dataPassword}"></h1>
+
+</form>
+
+
+
+</body>
+</html>
