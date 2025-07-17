@@ -44,7 +44,4 @@ public class ContohSatuController {
         return "redirect:"+strRedirect;
 //        return "redirect:/contohsatu/satu/"+conditionz;
     }
-
-
-
 }
