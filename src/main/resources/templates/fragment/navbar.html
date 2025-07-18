@@ -1,0 +1,10 @@
+<nav th:fragment="navheader">
+    <ul>
+        <li><a th:href="@{/home}">Home</a></li>
+        <th:block th:if="${USR_NAME != null}" th:utext="${MENU_NAVBAR}"></th:block>
+        <li><a th:href="@{/logout}" th:if="${USR_NAME != null}" >Logout</a></li>
+        <li><a th:href="@{/}" th:if="${USR_NAME == null}" >Login</a></li>
+        <li><a th:href="@{/contactus}">Contact Us</a></li>
+        <li><a th:href="@{/promo}">Promo</a></li>
+    </ul>
+</nav>

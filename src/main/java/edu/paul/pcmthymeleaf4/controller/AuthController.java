@@ -1,10 +1,15 @@
 package edu.paul.pcmthymeleaf4.controller;
 
 
+import edu.paul.pcmthymeleaf4.config.OtherConfig;
 import edu.paul.pcmthymeleaf4.dto.validasi.LoginDTO;
 import edu.paul.pcmthymeleaf4.httpclient.AuthService;
+import edu.paul.pcmthymeleaf4.security.BcryptImpl;
 import edu.paul.pcmthymeleaf4.utils.GenerateStringMenu;
+import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,11 +37,27 @@ public class AuthController {
     public String login(@ModelAttribute("data") @Valid LoginDTO loginDTO,
                         BindingResult result, Model model, WebRequest request){
 
-        if(result.hasErrors()){
+        String decodePassword = new String(Base64.decode(loginDTO.getPassword()));
+
+
+        GlobalFunction.matchingPattern(decodePassword,"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
+                "password","Format Tidak Valid","data",result);
+
+        Boolean isValid = false;
+        if(OtherConfig.getEnableAutomationTesting().equals("y")){
+            isValid = loginDTO.getCaptcha().equals(loginDTO.getHiddenCaptcha());
+        }else {
+            isValid = BcryptImpl.verifyHash(loginDTO.getCaptcha(), loginDTO.getHiddenCaptcha());
+        }
+        if(result.hasErrors() || !isValid){
+            if(!isValid){
+                model.addAttribute("captchaMessage", "Invalid Captcha");
+            }
+            GlobalFunction.getCaptchaLogin(loginDTO);
             model.addAttribute("data",loginDTO);
             return "auth/login";
         }
-
+        loginDTO.setPassword(decodePassword);
         ResponseEntity<Object> response = null;
         String menuNavBar = "";
         String jwt = "";
@@ -49,6 +70,7 @@ public class AuthController {
             menuNavBar = new GenerateStringMenu().stringMenu(listMenu);
 
         }catch(Exception e){
+            System.out.println("Error Login "+e.getMessage());
             model.addAttribute("data",loginDTO);
             model.addAttribute("notif","Error Choy !!");
             return "auth/login";

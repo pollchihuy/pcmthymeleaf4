@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <title th:text="${PAGE_NAME}"></title>
+</head>
+<body>
+<div>
+    <h1 style="color: green" th:text="${PAGE_NAME}"></h1>
+    <div th:replace="~{fragment/navbar::navheader}"></div>
+    <h1 style="color: red"> Not Available For Public </h1>
+</div>
+</body>
+</html>

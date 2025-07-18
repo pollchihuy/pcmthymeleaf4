@@ -2,6 +2,7 @@ package edu.paul.pcmthymeleaf4.controller;
 
 
 import edu.paul.pcmthymeleaf4.dto.validasi.LoginDTO;
+import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,10 @@ public class DefaultController {
     @GetMapping
     public String index(Model model){
 
-        model.addAttribute("data", new LoginDTO());
+        LoginDTO loginDTO = new LoginDTO();
+        GlobalFunction.getCaptchaLogin(loginDTO);
+        loginDTO.setUsername("paul.321");
+        model.addAttribute("data",loginDTO);
         return "auth/login";
     }
 

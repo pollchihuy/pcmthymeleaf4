@@ -18,9 +18,37 @@ public class LoginDTO {
     @Pattern(regexp = "^^(?=.{1,256})(?=.{1,64}@.{1,255}$)(?:(?![.])[a-zA-Z0-9._%+-]+(?:(?<!\\\\)[.][a-zA-Z0-9-]+)*?)@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,50})+$|^([a-z0-9\\.]{8,16})$|^(62|\\+62|0)8[0-9]{9,13}$$",message = "Username Tidak Valid broh!!")
     private String username;
 
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
-            message = "Format Password Tidak Valid")
+//    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
+//            message = "Format Password Tidak Valid")
     private String password;
+
+    private String captcha;
+    private String hiddenCaptcha;
+    private String realCaptcha;
+
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
+    }
+
+    public String getHiddenCaptcha() {
+        return hiddenCaptcha;
+    }
+
+    public void setHiddenCaptcha(String hiddenCaptcha) {
+        this.hiddenCaptcha = hiddenCaptcha;
+    }
+
+    public String getRealCaptcha() {
+        return realCaptcha;
+    }
+
+    public void setRealCaptcha(String realCaptcha) {
+        this.realCaptcha = realCaptcha;
+    }
 
     public String getUsername() {
         return username;
