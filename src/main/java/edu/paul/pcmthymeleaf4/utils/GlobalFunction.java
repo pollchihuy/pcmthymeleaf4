@@ -35,6 +35,16 @@ public class GlobalFunction {
         }
     }
 
+    public static Boolean matchingPattern(Model model,
+                                       String value,String regex,
+                                       String field,String message){
+        Boolean isValid = Pattern.compile(regex).matcher(value).find();
+        if(!isValid){
+            model.addAttribute(field,message);
+        }
+        return isValid;
+    }
+
 
     public void insertGlobalAttribut(Model model, WebRequest request, String pageName){
         String username = (String) request.getAttribute("USR_NAME",1);

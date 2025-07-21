@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/error.css}" type="text/css"/>
+    <title>REGISTRASI</title>
+</head>
+<body>
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+                         class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+                         alt="Sample photo">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+
+                        <form  th:action="@{/auth/regis}"
+                               method="post" id="formRegis" >
+                            <input type="hidden" value="a1a8d7fdecbc3bd60078d0ed99aa2b7c" />
+                            <div class ="form-group">
+                                <label  > Username </label>
+                                <input
+                                        type = "text"
+                                        id = "username"
+                                        name = "username"
+                                        th:value="${username}"
+                                        class = "form-control"
+                                        placeholder="Masukkan Username"
+                                />
+                                <p th:if="${usernameMessage!=null}" th:text="${usernameMessage}"></p>
+                                <p id="usernameMessage" class="error"></p>
+                            </div>
+
+                            <div class ="form-group">
+                                <label  for="password">Password</label>
+                                <input type="password" id="password" name="password"
+                                       class="form-control form-control-lg"
+                                       th:value="${password}"
+                                       placeholder="Enter password" />
+                                <p th:if="${passwordMessage!=null}" th:text="${passwordMessage}"></p>
+                                <p id="passwordMessage" class="error"></p>
+                            </div>
+
+                            <div class ="form-group">
+                                <label  for="namaLengkap"> Nama Lengkap </label>
+                                <input
+                                        id="namaLengkap"
+                                        type = "text"
+                                        th:value="${namaLengkap}"
+                                        name = "namaLengkap"
+                                        class = "form-control"
+                                        placeholder="Masukkan Nama Lengkap"
+                                />
+                                <p th:if="${namaLengkapMessage!=null}" id="namaLengkapMessage" th:text="${namaLengkapMessage}"></p>
+                            </div>
+
+                            <div class ="form-group">
+                                <label  for="noHp">No Handphone</label>
+                                <input type="number" id="noHp" name="noHp" class="form-control form-control-lg"
+                                       th:value="${noHp}" placeholder="Masukkan No Hp" />
+                                <p th:if="${noHpMessage!=null}" id="noHpMessage" th:text="${noHpMessage}"></p>
+                            </div>
+
+                            <div class ="form-group">
+                                <label  for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control form-control-lg"
+                                       th:value="${email}" placeholder="Enter Email" />
+                                <p th:if="${emailMessage!=null}" id="emailMessage" th:text="${emailMessage}"></p>
+                            </div>
+
+                            <div class ="form-group">
+                                <label for="alamat"> Alamat </label>
+                                <textarea
+                                        type = "text"
+                                        id = "alamat"
+                                        name = "alamat"
+                                        th:text="${alamat}"
+                                        class = "form-control"
+                                        placeholder="Masukkan Alamat" />
+                                <p th:if="${alamatMessage!=null}" id="alamatMessage" th:text="${alamatMessage}"></p>
+                            </div>
+
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label  for="tanggalLahir">Tanggal Lahir</label>
+                                <input type="date" id="tanggalLahir" name="tanggalLahir" class="form-control form-control-lg"
+                                       placeholder="Enter Birth Date" />
+                                <p th:if="${tanggalLahirMessage!=null}" id="tanggalLahirMessage" th:text="${tanggalLahirMessage}"></p>
+                            </div>
+
+                            <div>
+                                <input id="file" type="file" name="file" />
+                            </div>
+
+                            <div class = "modal-footer">
+                                <button type="submit" class = "btn btn-primary" id="btnSubm">
+                                    Submit
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/regis.js}"></script>
+
+</body>
+</html>

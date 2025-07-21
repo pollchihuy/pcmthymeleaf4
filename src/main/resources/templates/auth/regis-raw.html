@@ -1,0 +1,115 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>-->
+<!--    <link rel="stylesheet" th:href="@{/css/error.css}" type="text/css"/>-->
+<!--    <title>My Regis</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1 style="color: blue">Sign Up</h1>-->
+<!--<div th:if="${notif != null}" class="error-box error-danger" >-->
+<!--    <p style="text-align: center;color: green;font-weight: bolder;font-size: 2.5rem" th:utext="${notif}" />-->
+<!--</div>-->
+<!--<form  th:action="@{/auth/regis}"-->
+<!--       method="post" id="formRegis" >-->
+<!--    <input type="hidden" value="ashduahsdiughjaajkkhajh" />-->
+<!--    <div class ="form-group">-->
+<!--        <label  > Username </label>-->
+<!--        <input-->
+<!--                type = "text"-->
+<!--                name = "username"-->
+<!--                th:value="${username}"-->
+<!--                class = "form-control"-->
+<!--                placeholder="Masukkan Username"-->
+<!--        />-->
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${usernameMessage!=null}" th:text="${usernameMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <div class ="form-group">-->
+<!--        <label  for="password">Password</label>-->
+<!--        <input type="password" id="password" name="password"-->
+<!--               class="form-control form-control-lg"-->
+<!--               th:value="${password}"-->
+<!--               placeholder="Enter password" />-->
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${passwordMessage!=null}" th:text="${passwordMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <div class ="form-group">-->
+<!--        <label  for="namaLengkap"> Nama Lengkap </label>-->
+<!--        <input-->
+<!--                id="namaLengkap"-->
+<!--                type = "text"-->
+<!--                th:value="${namaLengkap}"-->
+<!--                name = "namaLengkap"-->
+<!--                class = "form-control"-->
+<!--                placeholder="Masukkan Nama Lengkap"-->
+<!--        />-->
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${namaLengkapMessage!=null}" th:text="${namaLengkapMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <div class ="form-group">-->
+<!--        <label  for="noHp">No Handphone</label>-->
+<!--        <input type="number" id="noHp" name="noHp" class="form-control form-control-lg"-->
+<!--               th:value="${noHp}" placeholder="Masukkan No Hp" />-->
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${noHpMessage!=null}" th:text="${noHpMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <div class ="form-group">-->
+<!--        <label  for="email">Email</label>-->
+<!--        <input type="email" id="email" name="email" class="form-control form-control-lg"-->
+<!--               th:value="${email}" placeholder="Enter Email" />-->
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${emailMessage!=null}" th:text="${emailMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <div class ="form-group">-->
+<!--        <label for="alamat"> Alamat </label>-->
+<!--        <textarea-->
+<!--                type = "text"-->
+<!--                id = "alamat"-->
+<!--                name = "alamat"-->
+<!--                th:text="${alamat}"-->
+<!--                class = "form-control"-->
+<!--                placeholder="Masukkan Alamat" />-->
+
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${alamatMessage!=null}" th:text="${alamatMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+
+<!--    <div data-mdb-input-init class="form-outline mb-4">-->
+<!--        <label  for="tanggalLahir">Tanggal Lahir</label>-->
+<!--        <input type="date" id="tanggalLahir" name="tanggalLahir" class="form-control form-control-lg"-->
+<!--               placeholder="Enter Birth Date" />-->
+<!--        <ul   class="error-ul">-->
+<!--            <li th:if="${tanggalLahirMessage!=null}" th:text="${tanggalLahirMessage}" class="error" />-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <input id="file" type="file" name="file" />-->
+<!--    </div>-->
+
+<!--    <div class = "modal-footer">-->
+<!--        <button type="submit" class = "btn btn-primary" id="btnSubm">-->
+<!--            Submit-->
+<!--        </button>-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/js/regis.js}"></script>-->
+<!--</body>-->
+<!--</html>-->

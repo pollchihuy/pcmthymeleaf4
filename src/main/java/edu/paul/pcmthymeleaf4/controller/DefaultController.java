@@ -39,6 +39,12 @@ public class DefaultController {
         return "auth/home";
     }
 
+    @GetMapping("/regis")
+    public String regis(){
+
+        return "auth/regis";
+    }
+
     @GetMapping("/logout")
     public String destroySession(HttpServletRequest request){
         request.getSession().invalidate();

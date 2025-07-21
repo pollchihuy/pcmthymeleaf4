@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/error.css}" type="text/css"/>
+    <title>Verify Regis</title>
+</head>
+<body>
+<h1 style="color: blue">Masukkan OTP</h1>
+<div th:if="${notif != null}" class="error-box error-danger" >
+    <p style="text-align: center;color: green;font-weight: bolder;font-size: 2.5rem" th:utext="${notif}" />
+</div>
+<form th:object="${data}" th:action="@{/auth/ver-regis}" th:id="formVerifyRegis" method="POST">
+    <input type="hidden" value="oajisdoiasdihoajsodijasd">
+<div>
+  <label>Username : </label>
+  <input type="text" id="otp" th:field="*{otp}">
+    <p style="text-align: center;color: green;font-weight: bolder;font-size: 0.5rem" id="errorOtp" class="error" />
+    <ul>
+        <li th:each="err : ${#fields.errors('otp')}" th:text="${err}" class="error" />
+    </ul>
+</div>
+
+<div>
+  <input type="hidden" id="email" th:field="*{email}">
+</div>
+
+    <div>
+        <button type="submit">SUBMIT</button>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+</body>
+</html>

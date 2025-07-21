@@ -12,7 +12,7 @@ $(document).ready(function () {
             isOk = false;
             document.getElementById("errorPwd").innerHTML = "Format Password Tidak Valid !!";
         }
-        regPattern = /^^(?=.{1,256})(?=.{1,64}@.{1,255}$)(?:(?![.])[a-zA-Z0-9._%+-]+(?:(?<!\\)[.][a-zA-Z0-9-]+)*?)@[a-zA-Z0-9.-]+(?:\.[a-zA-Z]{2,50})+$|^([a-z0-9\.]{8,16})$|^(62|\+62|0)8[0-9]{9,13}$$/;
+        regPattern = /^(?=.{1,256})(?=.{1,64}@.{1,255}$)(?:(?![.])[a-zA-Z0-9._%+-]+(?:(?<!\\)[.][a-zA-Z0-9-]+)*?)@[a-zA-Z0-9.-]+(?:\.[a-zA-Z]{2,50})+$|^([a-z0-9\.]{8,16})$|^(62|\+62|0)8[0-9]{9,13}$/;
         if(!regPattern.test(usrn)) {
             isOk = false;
             document.getElementById("errorUsername").innerHTML = "Format Username Tidak Valid !!";
