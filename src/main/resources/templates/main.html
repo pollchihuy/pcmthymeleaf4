@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css} "/>
     <title th:text="${PAGE_NAME}"></title>
 </head>
 <body>
 <div>
     <h1 style="color: green" th:text="${PAGE_NAME}"></h1>
     <div th:replace="~{fragment/navbar::navheader}"></div>
+    <div th:replace="~{fragment/filter::filter-form}"></div>
+    <div th:replace="~{fragment/table::main-table}"></div>
+
 </div>
 </body>
 </html>

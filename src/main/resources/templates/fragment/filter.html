@@ -1,0 +1,55 @@
+<div class="container mt-4" th:fragment="filter-form">
+    <div class="col-md-12">
+        <div class="row" >
+            <!-- logikanya jika pada saat totalData > (currentPage * page) maka pagination akan error. Oleh karena itu diberikan kondisi mencegah hal itu-->
+<!--            /kategoriproduk/asc/sortBy/page?column=columnName&value=value&  -->
+            <form th:action="@{/{pathServer}/{sort}/{sortBy}/{page}?column={columnName}&value={value}
+					 (
+					 pathServer=${pathServer},
+					 page=${currentPage},
+						sort=${sort},
+						sortBy=${sortBy},
+						columnName=${columnName},
+						value=${value})
+                    }"
+                  id="itemSizeForm">
+
+                <div class="row">
+                    <div class="col">
+                        <select name="column" th:value="${columnName}"
+                                id="columnName" class="form-control">
+                            <option value="id" selected="selected" hidden="hidden">---pilih kolom---</option>
+                            <option
+                                    th:each="childArrays:${filterColumn}"
+                                    th:value="${childArrays.key}"
+                                    th:text="${childArrays.value}"
+                                    th:selected="${childArrays.key == columnName}"></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select form="itemSizeForm" name="size" th:value="${sizePerPage}"
+                                onchange="changePageSize()" class="form-control"
+                                id="size">
+                            <option value="" disabled>Item per page...</option>
+                            <!--                            <option th:each="s : ${ {5, 10, 15,20,25,30} }"-->
+                            <option th:each="s : ${SIZE_COMPONENT}"
+                                    th:value="${s}"
+                                    th:text="${s}"
+                                    th:selected="${s == sizePerPage}"></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <input id="value" type="text" name="value" th:value="${value}"
+                                   class="form-control"
+                                   placeholder="Masukkan Data">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form><!-- end of form-->
+        </div>
+    </div>
+</div>

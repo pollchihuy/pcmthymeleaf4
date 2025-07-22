@@ -141,7 +141,6 @@ public class AuthController {
     public String verifyRegis(
             @Valid @ModelAttribute("data") VerifyRegisDTO verifyRegisDTO,
             Model model){
-
         ResponseEntity<Object> response = null;
         try{
             response = authService.verifyRegis(verifyRegisDTO);

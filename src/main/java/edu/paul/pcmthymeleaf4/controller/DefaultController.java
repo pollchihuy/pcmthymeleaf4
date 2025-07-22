@@ -1,6 +1,7 @@
 package edu.paul.pcmthymeleaf4.controller;
 
 
+import edu.paul.pcmthymeleaf4.config.OtherConfig;
 import edu.paul.pcmthymeleaf4.dto.validasi.LoginDTO;
 import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,13 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.Random;
 
 @Controller
 @RequestMapping("/")
 public class DefaultController {
-
-
 
     @GetMapping
     public String index(Model model){
@@ -24,6 +22,9 @@ public class DefaultController {
         LoginDTO loginDTO = new LoginDTO();
         GlobalFunction.getCaptchaLogin(loginDTO);
         loginDTO.setUsername("paul.321");
+        if(OtherConfig.getEnableAutomationTesting().equals("y")){
+            loginDTO.setCaptcha(loginDTO.getHiddenCaptcha());
+        }
         model.addAttribute("data",loginDTO);
         return "auth/login";
     }

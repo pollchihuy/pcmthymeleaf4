@@ -1,0 +1,23 @@
+<div th:fragment="main-table">
+<table>
+    <thead>
+    <tr>
+        <th:block th:each="headerName : ${listKolom}">
+            <th style="text-align: center" th:text="${headerName}"></th>
+        </th:block>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="entry:${listContent}">
+        <tr>
+            <th:block th:each="f:${listHelper}" >
+                <td th:text="${entry.get(f)}"></td>
+            </th:block>
+    </th:block>
+    </tr>
+    </th:block>
+
+    </tbody>
+
+</table>
+</div>

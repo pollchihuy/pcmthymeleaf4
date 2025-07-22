@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.header {
+    position: relative;
+    text-align: center;
+}
+.header h1 {
+    margin: 0;
+    padding: 10px;
+    background-color: #003366;
+    color: white;
+    font-size: 24px; /* Set base font size */
+}
+.header img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 10px 10px 10px;
+    width: 150px;
+}
+.report-details {
+    text-align: left;
+    margin: 20px 0;
+}
+.report-details span {
+    font-size: 1.2em;
+}
+.report-details .data-count {
+    float: right;
+    font-weight: bold;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th {
+    background-color: #003366;
+    color: white;
+    padding: 5px;
+    font-size: 18px; /* Set font size for table headers */
+    text-align: center;
+}
+td {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px; /* Set font size for table data */
+}
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Media query for smaller screens (e.g., phones) */
+@media only screen and (max-width: 600px) {
+    .header h1 {
+        font-size: 20px; /* Adjust font size for header */
+    }
+    th {
+        font-size: 16px; /* Adjust font size for table headers */
+    }
+    td {
+        font-size: 14px; /* Adjust font size for table data */
+    }
+    .header img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px 5px 5px 5px;
+        width: 120px;
+    }
+}
