@@ -100,15 +100,7 @@ public static final Integer [] SIZE_COMPONENT = {2,3,5,10,15,20,30};
         model.addAttribute("listHelper",listHelper);
 
         model.addAttribute("pathServer",pathServer);
-
-//        "total_data": 6,
-//                "column_name": "id",
-//                "size_per_page": 50,
-//                "total_pages": 1,
-//                "sort": "asc",
-//                "sort_by": "id",
-//                "value": "",
-//        "current_page": 0
+        
         int currentPage = (int) mapData.get("current_page");
         model.addAttribute("sort",mapData.get("sort"));
         model.addAttribute("sortBy",mapData.get("sort_by"));
@@ -120,9 +112,5 @@ public static final Integer [] SIZE_COMPONENT = {2,3,5,10,15,20,30};
         model.addAttribute("totalData",mapData.get("total_data"));
         model.addAttribute("SIZE_COMPONENT",SIZE_COMPONENT);
         model.addAttribute("filterColumn",filterColumn);
-
-
-
-
     }
 }

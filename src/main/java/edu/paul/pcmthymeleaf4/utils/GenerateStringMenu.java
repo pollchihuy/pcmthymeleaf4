@@ -19,8 +19,6 @@ public class GenerateStringMenu {
             }
             sBuilder.append("</ul></li>");//ini adalah menu header nya - penutup
         }
-        String buildHtml = sBuilder.toString();
-        System.out.println("BUILD HTML : "+buildHtml);
-        return buildHtml;
+        return sBuilder.toString();
     }
 }

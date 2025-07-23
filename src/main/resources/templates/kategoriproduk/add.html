@@ -1,0 +1,57 @@
+<form  th:action="@{/kategoriproduk}"
+	   th:object = "${data}" method="POST" th:id="formAdd">
+	<input type="hidden" value="50c9a8c2b1cb45799d8f0db5f8449c65" />
+	<input id="changeloc" type="hidden" value="kategoriproduk" /><!-- location -->
+
+	<div th:if="${#fields.hasErrors('global')}" class="error-box error-danger" >
+		<p th:each="err : ${#fields.errors('global')}" th:text="${err}"  class="error"/>
+	</div>
+	<div class ="form-group">
+		<label> Nama Kategori Produk </label>
+		<input
+				type = "text"
+				name = "nama"
+				th:field = "*{nama}"
+				class = "form-control"
+				placeholder="Masukkan Nama Kategori Produk"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('nama')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Deskripsi </label>
+		<textarea
+				type = "text"
+				name = "deskripsi"
+				th:field = "*{deskripsi}"
+				class = "form-control"
+				placeholder="Masukkan Deskripsi Kategori Produk"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('deskripsi')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Notes </label>
+		<textarea
+				type = "text"
+				name = "deskripsi"
+				th:field = "*{notes}"
+				class = "form-control"
+				placeholder="Masukkan Notes"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('notes')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class = "modal-footer">
+		<button type="submit" class = "btn btn-primary">
+			Submit
+		</button>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	</div>
+</form>

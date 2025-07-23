@@ -1,0 +1,18 @@
+<div th:fragment="btn-functional">
+    <div>
+        <button type="button"
+                th:data-title="'ADD'"
+                th:data-server="'#server-results-add'"
+                onclick="funcModalsHandler(event)"
+                th:data-url="'/'+${pathServer}+'/a'"
+                class="btn btn-primary" th:data-toggle="'modal'" th:data-target="'#add1'">
+            ADD
+        </button>
+        <a th:href="@{'/'+${pathServer}+'/pdf?column='+${columnName}+'&value='+${value}}">
+            <button  class="btn btn-primary" type="button" >PDF</button>
+        </a>
+        <a th:href="@{'/'+${pathServer}+'/excel?column='+${columnName}+'&value='+${value}}">
+            <button  class="btn btn-primary" type="button">Excel</button>
+        </a>
+    </div>
+</div>
