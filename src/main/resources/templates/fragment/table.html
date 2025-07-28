@@ -1,10 +1,20 @@
 <div th:fragment="main-table">
 <table>
     <thead>
+<!--    /kategoriproduk/asc/id/0?column=&value=&size=-->
+<!--(${#strings.equals(sort,'asc')} ? 'desc' : 'asc')-->
+<!--sort.equals('asc')?'desc':'asc'-->
+<!--<th style="text-align: center" th:text="${headerName}">-->
     <tr>
-        <th:block th:each="headerName : ${listKolom}">
-            <th style="text-align: center" th:text="${headerName}"></th>
+        <th:block th:each="map : ${listKolom}">
+            <th style="text-align: center">
+                <a class="text-light"
+                th:href="@{'/'+${pathServer}+'/'+(${#strings.equals(sort,'asc')} ? 'desc' : 'asc')+'/'+${map.key}
+                            +'/'+${currentPage}+'?column='+${columnName}+'&value='+${value}+'&size='+${sizePerPage}}"
+                >[[${map.value}]]</a>
+            </th>
         </th:block>
+        <th colspan="2">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -13,9 +23,27 @@
             <th:block th:each="f:${listHelper}" >
                 <td th:text="${entry.get(f)}"></td>
             </th:block>
+            <td style="text-align: center">
+                <button type="button"
+                        th:data-title="'Edit'"
+                        th:data-server="'#server-results-edit'"
+                        onclick="funcModalsHandler(event)"
+                        th:data-url="'/'+${pathServer}+'/e/'+${entry.get('id')}"
+                        class="btn btn-primary" data-toggle="modal" data-target="#edit1">
+                    Edit
+                </button>
+            </td>
+            <td style="text-align: center">
+                <button type="button" id="btnDelete"
+                        onclick="requestDeleteHandler(event)"
+                        th:data-title="${pathServer}"
+                        th:data-url="'/'+${pathServer}+'/d/'+${entry.get('id')}"
+                        class="btn btn-primary">
+                    Delete
+                </button>
+            </td>
     </th:block>
     </tr>
-    </th:block>
 
     </tbody>
 

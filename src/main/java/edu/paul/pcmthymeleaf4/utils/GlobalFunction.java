@@ -8,10 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class GlobalFunction {
@@ -86,14 +83,14 @@ public static final Integer [] SIZE_COMPONENT = {2,3,5,10,15,20,30};
 
     public void generateMainPage(Model model, Map<String,Object> mapData,String pathServer,Map<String,String> filterColumn){
         List<Map<String,Object>> list = (List<Map<String, Object>>) mapData.get("content");
-        List<String> listKolom = new LinkedList<>();
-        List<String> listHelper = new ArrayList<>();
+        List<String> listHelper = new LinkedList<>();
+        Map<String,Object> listKolom = new LinkedHashMap<>();
         Map<String,Object> columnHeader = list.get(0);
         String keyVal = "";
         for(Map.Entry<String,Object> entry : columnHeader.entrySet()){
             keyVal = entry.getKey();
             listHelper.add(keyVal);
-            listKolom.add(GlobalFunction.camelToStandard(keyVal));
+            listKolom.put(keyVal,GlobalFunction.camelToStandard(keyVal));
         }
         model.addAttribute("listKolom",listKolom);
         model.addAttribute("listContent",list);

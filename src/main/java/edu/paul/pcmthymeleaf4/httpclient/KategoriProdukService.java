@@ -41,4 +41,14 @@ public interface KategoriProdukService {
     public ResponseEntity<Object>  save(@RequestHeader("Authorization") String token,
                                         @RequestBody ValKategoriProdukDTO valKategoriProdukDTO);
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object>  findById(
+            @RequestHeader("Authorization") String token,
+            @PathVariable Long id);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object>  update(
+            @RequestHeader("Authorization") String token,
+            @PathVariable Long id,
+            @RequestBody ValKategoriProdukDTO valKategoriProdukDTO);
 }

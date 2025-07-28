@@ -1,11 +1,12 @@
 package edu.paul.pcmthymeleaf4.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.paul.pcmthymeleaf4.dto.response.RespKategoriProdukDTO;
 import edu.paul.pcmthymeleaf4.dto.validasi.ValKategoriProdukDTO;
 import edu.paul.pcmthymeleaf4.httpclient.KategoriProdukService;
 import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
 import feign.Response;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,7 @@ public class KategoriProdukController {
             WebRequest request){
         ResponseEntity<Object> response = null;
         String jwt = new GlobalFunction().tokenCheck(model,request);
-        page = page!=0?(page-1):1;// untuk menjadikan nilai absolut
+        page = page!=0?(page-1):page;// untuk menjadikan nilai absolut
         if(jwt.equals("redirect:/")){
             return jwt;
         }
@@ -158,6 +159,31 @@ public class KategoriProdukController {
         return "kategoriproduk/add";
     }
 
+    @GetMapping("/e/{id}")
+    public String openModalsEdit(Model model,
+                                 @PathVariable Long id,
+                                 WebRequest request){
+        ResponseEntity<Object> response = null;
+        Map<String,Object> map = null;
+        Map<String,Object> mapData = null;
+                String jwt = new GlobalFunction().tokenCheck(model,request);
+        if(jwt.equals("redirect:/")){
+            return jwt;
+        }
+
+        try {
+            response = kategoriProdukService.findById(jwt,id);
+            map = (Map<String, Object>) response.getBody();
+            mapData = (Map<String, Object>) map.get("data");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        model.addAttribute("data",new ObjectMapper().convertValue(mapData, RespKategoriProdukDTO.class));
+        model.addAttribute("ids",id);
+        return "kategoriproduk/edit";
+    }
+
     @PostMapping
     public String save(
             @Valid @ModelAttribute("data") ValKategoriProdukDTO valKategoriProdukDTO,
@@ -178,6 +204,32 @@ public class KategoriProdukController {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        return "err-response/200";
+    }
+
+    @PostMapping("/{id}")
+    public String edit(
+                                 @Valid @ModelAttribute("data") ValKategoriProdukDTO valKategoriProdukDTO,
+                                 BindingResult bindingResult,
+                                 Model model,
+                                 @PathVariable Long id,
+                                 WebRequest request){
+        ResponseEntity<Object> response = null;
+        String jwt = new GlobalFunction().tokenCheck(model,request);
+        if(jwt.equals("redirect:/")){
+            return jwt;
+        }
+        if(bindingResult.hasErrors()){
+            model.addAttribute("data",valKategoriProdukDTO);
+            model.addAttribute("ids",id);
+            return "kategoriproduk/edit";
+        }
+        try {
+            response = kategoriProdukService.update(jwt,id,valKategoriProdukDTO);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         return "err-response/200";
     }
 }

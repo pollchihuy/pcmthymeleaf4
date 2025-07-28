@@ -15,9 +15,11 @@
     <div th:replace="~{fragment/filter::filter-form}"></div>
     <div th:replace="~{fragment/report-button::btn-functional}"></div>
     <div th:replace="~{fragment/table::main-table}"></div>
+    <div th:replace="~{fragment/pagination::paging}"></div>
 
 
     <th:block th:replace="~{fragment/modals-add::modalsAdd('add1')}"></th:block>
+    <th:block th:replace="~{fragment/modals-edit::modalsEdit('edit1')}"></th:block>
 
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script><!--wajib ada untuk modals-->
