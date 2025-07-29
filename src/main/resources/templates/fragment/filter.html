@@ -1,16 +1,17 @@
 <div class="container mt-4" th:fragment="filter-form">
     <div class="col-md-12">
         <div class="row" >
-            <!-- logikanya jika pada saat totalData > (currentPage * page) maka pagination akan error. Oleh karena itu diberikan kondisi mencegah hal itu-->
-<!--            /kategoriproduk/asc/sortBy/page?column=columnName&value=value&  -->
+<!-- logikanya jika pada saat totalData > (currentPage * page) maka pagination akan error. Oleh karena itu diberikan kondisi mencegah hal itu-->
+<!--            <form th:action="@{/{pathServer}/{sort}/{sortBy}/{page}/{totalData}?column={columnName}&value={value}-->
+<!--            totalData=${totalData},-->
             <form th:action="@{/{pathServer}/{sort}/{sortBy}/{page}?column={columnName}&value={value}
 					 (
 					 pathServer=${pathServer},
 					 page=${currentPage},
-						sort=${sort},
-						sortBy=${sortBy},
-						columnName=${columnName},
-						value=${value})
+                     sort=${sort},
+                     sortBy=${sortBy},
+                     columnName=${columnName},
+                     value=${value})
                     }"
                   id="itemSizeForm">
 

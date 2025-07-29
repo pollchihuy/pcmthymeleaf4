@@ -1,0 +1,43 @@
+<form  th:action="@{/kategoriproduk/{id} (id=${ids})}"
+	   th:object = "${data}" method="POST" th:id="formEdit">
+	<input type="hidden" value="50c9a8c2b1cb45799d8f0db5f8449c65" />
+	<input id="changeloc" type="hidden" value="kategoriproduk" /><!-- location -->
+
+	<div th:if="${#fields.hasErrors('global')}" class="error-box error-danger" >
+		<p th:each="err : ${#fields.errors('global')}" th:text="${err}"  class="error"/>
+	</div>
+	<div class ="form-group">
+		<label> Nama Supplier </label>
+		<input
+				type = "text"
+				name = "nama"
+				th:field = "*{nama}"
+				class = "form-control"
+				placeholder="Masukkan Nama Supplier"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('nama')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Alamat Supplier </label>
+		<textarea
+				type = "text"
+				name = "alamat"
+				th:field = "*{alamat}"
+				class = "form-control"
+				placeholder="Masukkan Alamat Supplier"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('alamat')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class = "modal-footer">
+		<button type="submit" class = "btn btn-primary">
+			Submit
+		</button>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	</div>
+</form>

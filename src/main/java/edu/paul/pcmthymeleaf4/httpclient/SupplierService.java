@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "supplier-servicfe",url = "${host.rest.api}"+"/supplier")
+@FeignClient(name = "supplier-service",url = "${host.rest.api}"+"/supplier")
 public interface SupplierService {
 
     @GetMapping

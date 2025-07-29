@@ -59,6 +59,7 @@ public class KategoriProdukController {
         return "main";
     }
 
+//    @GetMapping("/{sort}/{sort-by}/{page}/{totalData}")
     @GetMapping("/{sort}/{sort-by}/{page}")
     public String findByParam(
             Model model,
@@ -68,10 +69,14 @@ public class KategoriProdukController {
             @RequestParam Integer size,
             @RequestParam String column,
             @RequestParam String value,
+//            @PathVariable String totalData,
             WebRequest request){
         ResponseEntity<Object> response = null;
         String jwt = new GlobalFunction().tokenCheck(model,request);
+//        int intTotalData = Integer.parseInt(totalData);
         page = page!=0?(page-1):page;// untuk menjadikan nilai absolut
+//        page = ((page*size)>intTotalData)?0:page;
+
         if(jwt.equals("redirect:/")){
             return jwt;
         }
@@ -207,6 +212,15 @@ public class KategoriProdukController {
         return "err-response/200";
     }
 
+    /**
+     *
+     * @param valKategoriProdukDTO
+     * @param bindingResult
+     * @param model
+     * @param id
+     * @param request
+     * @return
+     */
     @PostMapping("/{id}")
     public String edit(
                                  @Valid @ModelAttribute("data") ValKategoriProdukDTO valKategoriProdukDTO,
@@ -231,5 +245,42 @@ public class KategoriProdukController {
         }
 
         return "err-response/200";
+    }
+
+    @GetMapping("{idComp}/{descComp}/{sort}/{sortBy}/{page}")
+    public String dataTable(Model model,
+                            @PathVariable(value = "sort") String sort,
+                            @PathVariable(value = "sortBy") String sortBy,//name
+                            @PathVariable(value = "page") Integer page,
+                            @RequestParam(value = "size") Integer size,
+                            @RequestParam(value = "column") String column,
+                            @RequestParam(value = "value") String value,
+                            @PathVariable(value = "idComp") String idComp,
+                            @PathVariable(value = "descComp") String descComp,
+                            WebRequest request){
+        ResponseEntity<Object> response = null;
+        page = page!=0?(page-1):page;
+        String jwt = new GlobalFunction().tokenCheck(model,request);
+        if(jwt.equals("redirect:/")){
+            return jwt;
+        }
+        Map<String,Object> map = null;
+        Map<String,Object> mapData = null;
+        try{
+
+            response = kategoriProdukService.findByParam(jwt,page,sortBy,sort,size,column,value);
+            map = (Map<String, Object>) response.getBody();
+            mapData = (Map<String, Object>) map.get("data");
+        }catch (Exception e){
+            model.addAttribute("idComp", idComp);
+            model.addAttribute("descComp",descComp);
+            return "global/data-table-form";
+        }
+
+        new GlobalFunction().generateMainPage(model,mapData,"kategoriproduk",filterColumn);
+        new GlobalFunction().insertGlobalAttribut(model,request,"KATEGORI PRODUK");
+        model.addAttribute("idComp", idComp);
+        model.addAttribute("descComp",descComp);
+        return "data-table-form";
     }
 }

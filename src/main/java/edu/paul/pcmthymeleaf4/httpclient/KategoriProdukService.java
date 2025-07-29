@@ -2,14 +2,11 @@ package edu.paul.pcmthymeleaf4.httpclient;
 
 import edu.paul.pcmthymeleaf4.dto.validasi.ValKategoriProdukDTO;
 import feign.Response;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "kategoriproduk-servicfe",url = "${host.rest.api}"+"/kategoriproduk")
+@FeignClient(name = "kategoriproduk-service",url = "${host.rest.api}"+"/kategoriproduk")
 public interface KategoriProdukService {
 
     @GetMapping

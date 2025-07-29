@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<div class="container mt-4" th:fragment="filter-data-master">
+    <div class="col-md-12">
+        <div class="row">
+                <div class="row">
+                    <input type="hidden" id="pathServer" th:value="${pathServer}"></input>
+                    <input type="hidden" id="sortBy" th:value="${sortBy}"></input>
+                    <input type="hidden" id="sort" th:value="${sort}"></input>
+                    <input type="hidden" id="currentPage" th:value="${currentPage}"></input>
+                    <input type="hidden" id="idComp" th:value="${idComp}"></input>
+                    <input type="hidden" id="descComp" th:value="${descComp}"></input>
+                    <input type="hidden" id="totalData" th:value="${totalData}"></input>
+
+                    <div class="col">
+                        <select name="colName" th:value="${columnName}"
+                                id="colName" class="form-control">
+                            <option value="id" hidden="hidden">---pilih kolom---</option>
+                            <option
+                                    th:each="childArrays:${filterColumn}"
+                                    th:value="${childArrays.key}"
+                                    th:text="${childArrays.value}"
+                                    th:selected="${childArrays.key == columnName}"></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select  name="sizeChange" th:value="${size}"
+                                class="form-control"
+                                id="sizeChange">
+                            <option value="5" disabled>Item per page...</option>
+                            <option th:each="s : ${ {2,5, 10, 15,20,25,30} }"
+                                    th:value="${s}"
+                                    th:text="${s}"
+                                    th:selected="${s == sizePerPage}"></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <input id="textVal" type="text" name="textVal" th:value="${value}"
+                                   class="form-control"
+                                   placeholder="Masukkan Data">
+                            <div class="input-group-append">
+                                <button type="button" th:onclick="callDataMaster()"  class="btn btn-secondary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</html>

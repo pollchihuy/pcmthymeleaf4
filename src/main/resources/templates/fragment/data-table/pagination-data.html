@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="container" th:fragment="paging-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div th:if = "${totalPage > 1}">
+                <div class = "row">
+                    <div class = "col-sm-2">
+                        Total Rows: [[${totalData}]]
+                    </div>
+                    <div class = "col-sm-4">
+                        <a  th:href="'javascript:;'" th:if="${currentPage > 1}" th:onclick="callDataMasterPaging('0')">First</a>
+                        <a  th:href="'javascript:;'" th:unless="${currentPage > 1}" disabled="disabled">First</a>
+                        <a  th:href="'javascript:;'" th:if="${currentPage > 1}" th:onclick="callDataMasterPaging([[${currentPage - 1}]])">Prev</a>
+                        <a  th:href="'javascript:;'" th:unless="${currentPage > 1}" disabled="disabled">Prev</a>
+                    </div>
+                    <div class = "col-sm-2">
+                        <div class="btn-group">
+                            <th:block th:each="i: ${#numbers.sequence(1, totalPage)}">
+                                <a th:href="'javascript:;'" class="page-button" style="color:black;border: 2px solid blue" th:if="${currentPage != i}" th:onclick="callDataMasterPaging([[${i}]])">[[${i}]]</a>
+                                <a th:href="'javascript:;'" class="page-button" style="color:darkgrey;border: 2px solid grey" th:unless="${currentPage != i}" disabled="disabled">[[${i}]]</a>
+                            </th:block>
+                            <p style="clear:both"></p>
+                        </div>
+                    </div>
+                    <div class = "col-sm-4">
+                        <a th:href="'javascript:;'" th:if="${currentPage < totalPage}" th:onclick="callDataMasterPaging([[${currentPage + 1}]])">Next</a>
+                        <a th:href="'javascript:;'" th:unless="${currentPage < totalPage}" disabled="disabled">Next</a>
+                        <a th:href="'javascript:;'" th:if="${currentPage < totalPage}" th:onclick="callDataMasterPaging([[${totalPage}]])">Last</a>
+                        <a th:href="'javascript:;'" th:unless="${currentPage < totalPage}" disabled="disabled">Last</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</html>

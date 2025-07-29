@@ -2,7 +2,7 @@ package edu.paul.pcmthymeleaf4.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.paul.pcmthymeleaf4.dto.response.RespKategoriProdukDTO;
+import edu.paul.pcmthymeleaf4.dto.response.RespSupplierDTO;
 import edu.paul.pcmthymeleaf4.dto.validasi.ValSupplierDTO;
 import edu.paul.pcmthymeleaf4.httpclient.SupplierService;
 import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
@@ -180,7 +180,7 @@ public class SupplierController {
             System.out.println(e.getMessage());
         }
 
-        model.addAttribute("data",new ObjectMapper().convertValue(mapData, RespKategoriProdukDTO.class));
+        model.addAttribute("data",new ObjectMapper().convertValue(mapData, RespSupplierDTO.class));
         model.addAttribute("ids",id);
         return "supplier/edit";
     }

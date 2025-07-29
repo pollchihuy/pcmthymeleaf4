@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<table th:fragment="table-master">
+    <thead>
+    <tr>
+        <th:block th:each="map:${listKolom}">
+            <th>
+                <a th:href="'javascript:;'"  th:onclick="callDataMasterSorting([[(${#strings.equals(sort,'asc')} ? 'desc' : 'asc')]],[[${map.key}]])">[[${map.value}]]</a>
+            </th>
+        </th:block>
+        <th>Action</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <th:block th:each="entry:${listContent}">
+        <tr>
+            <th:block th:each="f:${listHelper}" >
+                <td th:text="${entry.get(f)}"></td>
+            </th:block>
+            <td style="text-align: center">
+                <button type="button"
+                        th:onclick="funcModalsDataMasterHandler('#'+[[${idComp}]],'#'+[[${descComp}]],[[${entry.get('id')}]],[[${entry.get('nama')}]])"
+                        class="btn btn-primary">
+                    Pilih
+                </button>
+            </td>
+    </th:block>
+    </tr>
+    </th:block>
+
+    </tbody>
+</table>
+
+
+</html>

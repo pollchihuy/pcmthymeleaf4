@@ -20,11 +20,12 @@
 
     <th:block th:replace="~{fragment/modals-add::modalsAdd('add1')}"></th:block>
     <th:block th:replace="~{fragment/modals-edit::modalsEdit('edit1')}"></th:block>
-
+    <th:block th:replace="~{fragment/data-table/modals-data-table::modalsTable('dataTable')}">modalEdit</th:block>
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script><!--wajib ada untuk modals-->
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script><!--wajib ada untuk modals-->
     <script type="text/javascript" th:src="@{/js/modals.js}"></script>
+    <script type="text/javascript" th:src="@{/js/action.js}"></script>
     <script type="text/javascript" th:src="@{/js/submitdata.js}"></script>
 </div>
 </body>

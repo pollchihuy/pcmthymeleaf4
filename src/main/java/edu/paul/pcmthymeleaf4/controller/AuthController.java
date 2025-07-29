@@ -1,6 +1,5 @@
 package edu.paul.pcmthymeleaf4.controller;
 
-
 import edu.paul.pcmthymeleaf4.config.OtherConfig;
 import edu.paul.pcmthymeleaf4.dto.validasi.LoginDTO;
 import edu.paul.pcmthymeleaf4.dto.validasi.RegisDTO;
@@ -9,9 +8,7 @@ import edu.paul.pcmthymeleaf4.httpclient.AuthService;
 import edu.paul.pcmthymeleaf4.security.BcryptImpl;
 import edu.paul.pcmthymeleaf4.utils.GenerateStringMenu;
 import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
-import feign.Response;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +40,6 @@ public class AuthController {
                         BindingResult result, Model model, WebRequest request){
 
         String decodePassword = new String(Base64.decode(loginDTO.getPassword()));
-
-
         GlobalFunction.matchingPattern(decodePassword,"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
                 "password","Format Tidak Valid","data",result);
 

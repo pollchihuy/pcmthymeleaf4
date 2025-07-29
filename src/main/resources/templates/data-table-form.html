@@ -1,0 +1,6 @@
+<div th:replace="~{fragment/data-table/filter-data::filter-data-master}"></div>
+<div th:replace="~{fragment/data-table/table-data::table-master}"></div>
+<div th:replace="~{fragment/data-table/pagination-data::paging-data}"></div>
+<div th:if="${pesan != null}" class="error-box error-danger" >
+    <p style="text-align: center;color: green;font-weight: bolder;font-size: 2.5rem" th:utext="${pesan}" />
+</div>
