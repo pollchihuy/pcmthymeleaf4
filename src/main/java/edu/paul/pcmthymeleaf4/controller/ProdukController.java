@@ -4,6 +4,8 @@ package edu.paul.pcmthymeleaf4.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.paul.pcmthymeleaf4.dto.relation.RelSupplierDTO;
 import edu.paul.pcmthymeleaf4.dto.response.RespKategoriProdukDTO;
+import edu.paul.pcmthymeleaf4.dto.response.RespProdukDTO;
+import edu.paul.pcmthymeleaf4.dto.validasi.SelectSupplierDTO;
 import edu.paul.pcmthymeleaf4.dto.validasi.ValProdukComponentDTO;
 import edu.paul.pcmthymeleaf4.dto.validasi.ValProdukDTO;
 import edu.paul.pcmthymeleaf4.httpclient.ProdukService;
@@ -24,10 +26,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("produk")
@@ -265,6 +265,55 @@ public class ProdukController {
         }
         valProdukDTO.setSuppliers(lsVal);
         return valProdukDTO;
+    }
+
+    public List<SelectSupplierDTO> getAllSupplier(List<Map<String,Object>> ltMenu){
+        List<SelectSupplierDTO> selectMenuDTOS = new ArrayList<>();
+        SelectSupplierDTO supplierDTO = null;
+        for(Map<String,Object> menu:ltMenu){
+            supplierDTO = new SelectSupplierDTO();
+            supplierDTO.setId(Long.parseLong(menu.get("id").toString()));
+            supplierDTO.setNama(menu.get("nama").toString());
+            selectMenuDTOS.add(supplierDTO);
+        }
+        return selectMenuDTOS;
+    }
+
+    /** seluruh processing mapping data pada saat proses Edit untuk relasi many to many ada di function ini */
+    private Map<String,Object> getDataEdit(SupplierService supplierService, ProdukService produkService, String jwt, Long id){
+        ResponseEntity<Object> response = null;
+        Map<String,Object> map = null;
+        Map<String,Object> mapData = null;
+        List<Map<String,Object>> listAksesMenu = null;
+        List<Map<String,Object>> listMenu = null;
+
+        List<SelectSupplierDTO> listAllMenu = null;
+        Set<Long> menuSelected = null;
+        List<SelectSupplierDTO> selectedMenuDTO = new ArrayList<>();
+        response = produkService.findById(jwt,id);
+        listMenu = getListSupplier(supplierService,jwt);
+        map = (Map<String, Object>) response.getBody();
+        mapData = (Map<String, Object>) map.get("data");
+        listAksesMenu = (List<Map<String, Object>>) mapData.get("list-menu");
+
+        listAllMenu = getAllSupplier(listMenu);
+        for (SelectSupplierDTO menu : listAllMenu) {
+            for(Map<String,Object> m:listAksesMenu){
+                Long idMenu = menu.getId();
+                Long idAksesMenu =Long.parseLong(m.get("id").toString());
+                if(idMenu==idAksesMenu){
+                    selectedMenuDTO.add(menu);
+                    break;
+                }
+            }
+        }
+        menuSelected = selectedMenuDTO.stream().map(SelectSupplierDTO::getId).collect(Collectors.toSet());
+        Map<String, Object> mapReturn = new HashMap<>();
+        mapReturn.put("menuSelected",menuSelected);
+        mapReturn.put("data",new ObjectMapper().convertValue(mapData, RespProdukDTO.class));
+        mapReturn.put("listAllMenu",listAllMenu);
+
+        return mapReturn;
     }
 
     @PostMapping("/{id}")

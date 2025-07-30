@@ -1,0 +1,126 @@
+<form  th:action="@{/produk//{id} (id=${ids})}"
+	   th:object = "${data}" method="POST" id="formEdit">
+	<input type="hidden" value="50c9a8c2b1cb45799d8f0db5f8449c65" /><!-- id form -->
+	<input id="changeloc" type="hidden" value="produk" /><!-- location -->
+	<div th:if="${#fields.hasErrors('global')}" class="error-box error-danger" >
+		<p th:each="err : ${#fields.errors('global')}" th:text="${err}"  class="error"/>
+	</div>
+	<div class ="form-group">
+		<label> Nama Produk </label>
+		<input
+				type = "text"
+				name = "nama"
+				th:field = "*{nama}"
+				class = "form-control"
+				placeholder="Masukkan Nama Produk"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('nama')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Deskripsi </label>
+		<textarea
+				type = "text"
+				name = "deskripsi"
+				th:field = "*{deskripsi}"
+				class = "form-control"
+				placeholder="Masukkan Deskripsi"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('deskripsi')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Model </label>
+		<input
+				type = "text"
+				name = "model"
+				th:field = "*{model}"
+				class = "form-control"
+				placeholder="Masukkan Model"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('model')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Warna </label>
+		<input
+				type = "text"
+				name = "warna"
+				th:field = "*{warna}"
+				class = "form-control"
+				placeholder="Masukkan Warna"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('warna')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Stok </label>
+		<input
+				type = "number"
+				name = "stok"
+				th:field = "*{stok}"
+				class = "form-control"
+				placeholder="Masukkan Stok"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('stok')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label> Merk </label>
+		<input
+				type = "text"
+				name = "merk"
+				th:field = "*{merk}"
+				class = "form-control"
+				placeholder="Masukkan Merk"
+		/>
+		<ul>
+			<li th:each="err : ${#fields.errors('merk')}" th:text="${err}" class="error" />
+		</ul>
+	</div>
+
+	<div class ="form-group">
+		<label>Kategori Produk</label>
+		<input
+				type = "text"
+				id="namaKategori"
+				name = "namaKategori"
+				th:field = "*{kategoriProduk.nama}"
+				class = "form-control"
+				placeholder="Pilih"
+				disabled="disabled"
+		/>
+		<input type="hidden" th:field="*{kategoriProduk.id}" id="idKategori" />
+		<button
+				th:id="pilih-data"
+				th:onclick="funcModalsDataTableHandler('Data Kategori Produk','#dataTable','/kategoriproduk/idKategori/namaKategori/asc/id/0?column=id&value=&size=5','#data-result')"
+				data-toggle="modal" data-target="#dataTable"
+				class="btn btn-primary" type="button">
+			Pilih
+		</button>
+	</div>
+
+	<div class ="form-group">
+		<label> List Supplier </label>
+		<select id="suppliers" name="suppliers" th:field="*{suppliers}" size="10" multiple="multiple">
+			<option th:each="supplierList: ${x}" th:value="${supplierList.id}" th:text="${supplierList.nama}"></option>
+		</select>
+	</div>
+
+	<div class = "modal-footer">
+		<button type="submit" class = "btn btn-primary">
+			Submit
+		</button>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	</div>
+</form>

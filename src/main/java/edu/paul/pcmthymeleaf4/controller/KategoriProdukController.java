@@ -3,8 +3,10 @@ package edu.paul.pcmthymeleaf4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.paul.pcmthymeleaf4.dto.response.RespKategoriProdukDTO;
+import edu.paul.pcmthymeleaf4.dto.validasi.SelectSupplierDTO;
 import edu.paul.pcmthymeleaf4.dto.validasi.ValKategoriProdukDTO;
 import edu.paul.pcmthymeleaf4.httpclient.KategoriProdukService;
+import edu.paul.pcmthymeleaf4.httpclient.SupplierService;
 import edu.paul.pcmthymeleaf4.utils.GlobalFunction;
 import feign.Response;
 import jakarta.validation.Valid;
@@ -22,6 +24,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("kategoriproduk")
@@ -246,6 +249,9 @@ public class KategoriProdukController {
 
         return "err-response/200";
     }
+
+
+
 
     @GetMapping("{idComp}/{descComp}/{sort}/{sortBy}/{page}")
     public String dataTable(Model model,
